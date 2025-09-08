@@ -1,6 +1,5 @@
 from fastapi import APIRouter
-from app.schemas.config_schema import settings
-from app.core.config import get_postgres_connection
+from app.core.config import config, get_postgres_connection
 
 router = APIRouter(
     prefix="/server_info",
@@ -28,4 +27,4 @@ async def liveness_check():
 
 @router.get("/version", response_model=dict)
 async def version_info():
-    return {"title": settings.APP_TITLE, "version": settings.APP_VERSION, "description": settings.APP_DESCRIPTION}
+    return {"title": config.APP_TITLE, "version": config.APP_VERSION, "description": config.APP_DESCRIPTION}

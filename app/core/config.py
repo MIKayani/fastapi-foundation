@@ -1,11 +1,18 @@
 from dotenv import load_dotenv
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from app.core.logger import get_logger
-from app.schemas.config_schema import settings
+from app.core.logger import get_logger, setup_logging
+from app.schemas.config_schema import Settings
 
 load_dotenv()
 
+# 1. Create the configuration instance, which will read from the environment
+config = Settings()
+
+# 2. Set up logging based on the loaded configuration
+setup_logging(config.LOGLEVEL)
+
+# 3. Get a logger for this file, now that logging is configured
 logger = get_logger(__name__)
 
 postgres_connection = None
@@ -34,11 +41,11 @@ def get_postgres_connection():
 
     try:
         postgres_connection = psycopg2.connect(
-            dbname=settings.DB_NAME,
-            user=settings.DB_USER,
-            password=settings.DB_PASSWORD,
-            host=settings.DB_HOST,
-            port=settings.DB_PORT,
+            dbname=config.DB_NAME,
+            user=config.DB_USER,
+            password=config.DB_PASSWORD,
+            host=config.DB_HOST,
+            port=config.DB_PORT,
             cursor_factory=RealDictCursor
         )
         logger.info("PostgreSQL connection established successfully.")

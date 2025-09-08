@@ -1,5 +1,4 @@
 # FastAPI Foundation
-⚡ FastAPI Foundation is a production-ready boilerplate for building scalable FastAPI applications. It comes with a clean modular architecture, PostgreSQL integration, centralized configuration, authentication middleware, logging, and other essentials—so you can focus on writing business logic instead of setup.
 
 This project serves as a robust, production-ready skeleton for building FastAPI applications. It comes pre-configured with a modular structure, centralized configuration management, database integration, and essential middleware.
 
