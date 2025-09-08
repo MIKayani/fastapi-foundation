@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.middleware.auth import AccessTokenAuthMiddleware, DocsAuthMiddleware
 from app.middleware.cors import add_cors_middleware
 from app.core.openapi import custom_openapi
-from app.schemas.config_schema import settings
+from app.core.config import config
 from app.db.init_db import initialize_database
 
 from app.api.endpoints.routes import (
@@ -10,14 +10,14 @@ from app.api.endpoints.routes import (
 )
 
 app = FastAPI(
-    title=settings.APP_TITLE,
-    version=settings.APP_VERSION,
-    description=settings.APP_DESCRIPTION,
+    title=config.APP_TITLE,
+    version=config.APP_VERSION,
+    description=config.APP_DESCRIPTION,
 )
 
 @app.on_event("startup")
 async def startup_event():
-    if settings.DATABASE_INIT:
+    if config.DATABASE_INIT:
         initialize_database()
 
 # Add middlewares

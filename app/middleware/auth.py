@@ -1,5 +1,4 @@
 import base64
-import os
 from fastapi import Request
 from fastapi.responses import JSONResponse, PlainTextResponse
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
@@ -9,11 +8,11 @@ from starlette.status import HTTP_401_UNAUTHORIZED
 from starlette.types import ASGIApp
 from starlette.concurrency import run_in_threadpool
 
-from app.schemas.config_schema import settings
+from app.core.config import config
 from app.db.auth import get_user_id_from_token
 
-DOCS_USERNAME = settings.DOCS_USERNAME
-DOCS_PASSWORD = settings.DOCS_PASSWORD
+DOCS_USERNAME = config.DOCS_USERNAME
+DOCS_PASSWORD = config.DOCS_PASSWORD
 
 PROTECTED_PATHS = {"/docs", "/redoc", "/openapi.json"}
 
