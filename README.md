@@ -24,8 +24,8 @@ This project serves as a robust, production-ready skeleton for building FastAPI 
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd <repository-name>
+    git clone https://github.com/MIKayani/fastapi-foundation
+    cd fastapi-foundation
     ```
 
 2.  **Create and activate a virtual environment (recommended):**
